@@ -14,6 +14,8 @@ in your KoLMafia CLI.
 
 Now when you go to your mall store and look at your sales, you will see a checkbox for AR View (And a much-needed refresh button).
 
+Also, when you click on the ticket number(s), it will automatically copy the "Person bought X of (Item) for Z Meat." message to your clipboard for posting into /games chat.
+
 To update, type:
 ----------------------
 <pre>
