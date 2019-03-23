@@ -28,6 +28,30 @@ function copyToClipboard(text) {
   $temp.remove();
 }
 
+function user_is_hc(user_id) {
+   var result = false;
+   jQuery.ajax({
+      url: 'showplayer.php?who=' + user_id,
+      type: 'get',
+      dataType: 'html',
+      async: false,
+      success: function(data) {
+         data = jQuery(data);
+         if (jQuery(data.find("td b:contains('Hardcore')")[0]).text() == '(Hardcore)') result = true;
+         if (jQuery(data.find("td b:contains('In Ronin')")[0]).text() == '(In Ronin)') result = true;
+      }
+   });
+   return result;
+}
+
+function handleUserClick(user_id, user_name) {
+   if (user_is_hc(user_id)) {
+      window.location = 'town_sendgift.php?towho=' + user_name;
+   } else {
+      window.location = 'sendmessage.php?toid=' + user_name;
+   }
+}
+
 function get_kol_date(date) {
    var day_one = moment.tz(moment("2003-02-01T03:30:00Z"), "America/Phoenix");
    var months = ['Jarlsuary', 'Frankuary', 'Starch', 'April', 'Martinus', 'Bill', 'Bor', 'Petember', 'Carlvember', 'Porktober', 'Boozember', 'Dougtember'];
@@ -97,7 +121,7 @@ function replaceSales() {
                if (b == 0) {
                   td.append(jQuery("<b><a href='#' onclick='copyToClipboard(\""+addSlashes(value2[a][1])+"\"); return false;'>" + value2[a][b] + "</a></b>"));
                } else if (b == 5) {
-                  td.append(jQuery("<a href='/sendmessage.php?toid=" + value2[a][b] + "'>" + value2[a][b] + "</a>"));
+                  td.append(jQuery("<a onclick='handleUserClick("+value2[a][4]+", \""+value2[a][5]+"\");' href='#'>" + value2[a][b] + "</a>"));
                } else if (b == 8) {
                   td.text(nwc(value2[a][b]));
                } else {
