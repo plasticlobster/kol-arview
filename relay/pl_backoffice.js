@@ -95,7 +95,7 @@ function replaceSales() {
                if ((b == 1) || (b == 4)) continue;
                let td = jQuery("<td style='text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px'></td>");
                if (b == 0) {
-                  td.append(jQuery("<b><a href='#' onclick='copyToClipboard(\""+addSlashes(value2[a][1])+"\");'>" + value2[a][b] + "</a></b>"));
+                  td.append(jQuery("<b><a href='#' onclick='copyToClipboard(\""+addSlashes(value2[a][1])+"\"); return false;'>" + value2[a][b] + "</a></b>"));
                } else if (b == 5) {
                   td.append(jQuery("<a href='/sendmessage.php?toid=" + value2[a][b] + "'>" + value2[a][b] + "</a>"));
                } else if (b == 8) {
