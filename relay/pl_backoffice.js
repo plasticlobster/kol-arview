@@ -46,9 +46,9 @@ function user_is_hc(user_id) {
 
 function handleUserClick(user_id, user_name) {
    if (user_is_hc(user_id)) {
-      window.location = 'town_sendgift.php?towho=' + user_name;
+      window.location = 'town_sendgift.php?towho=' + encodeURI(user_name);
    } else {
-      window.location = 'sendmessage.php?toid=' + user_name;
+      window.location = 'sendmessage.php?toid=' + encodeURI(user_name);
    }
 }
 
