@@ -188,12 +188,25 @@ jQuery( document ).ready(function( $ ) {
    $('#orig_content').html(jQuery('span.small').html());
    $('span.small').html($('#orig_content').html());
    addDayBreaks();
+   var ar_view = window.localStorage.getItem('pl_ar_view');
+   if (ar_view) {
+      $('#toggle_ar_mode').prop('checked', true);
+      replaceSales();
+      window.localStorage.setItem('pl_ar_view', true);
+   } else {
+      $('#toggle_ar_mode').prop('checked', false);
+      $('span.small').html($('#orig_content').html());
+      addDayBreaks();
+      window.localStorage.setItem('pl_ar_view', false);
+   }
    $('#toggle_ar_mode').change(function() {
       if ($('#toggle_ar_mode').prop('checked')) {
          replaceSales();
+         window.localStorage.setItem('pl_ar_view', true);
       } else {
          $('span.small').html($('#orig_content').html());
          addDayBreaks();
+         window.localStorage.setItem('pl_ar_view', false);
       }
    });
    if ($('#toggle_ar_mode').prop('checked')) {
