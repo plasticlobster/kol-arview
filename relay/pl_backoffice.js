@@ -150,13 +150,49 @@ function refreshSales() {
    });
 }
 
+function addDayBreaks() {
+   var kol_dates = jQuery('#kol_dates').val();
+   if (kol_dates == "1") {
+      kol_dates = true;
+   } else {
+      kol_dates = false;
+   }
+   let data = jQuery('#orig_content').html();
+   data = data.split("<br>");
+   let matcher = /(\d+\/\d+\/\d+) (\d+:\d+:\d+).*[?]who\=(\d+).*<b>(.*)<\/b><\/a> bought (\d+) [\(](.*)[\)] for (\d+) Meat./;
+   var matches = [];
+   var this_match = [];
+   var m;
+   var last_day = "";
+   for (var a = 0; a < data.length; a++) {
+      this_match = data[a].match(matcher);
+      if (this_match) {
+         let tmp = this_match[1];
+         if (kol_dates) {
+            tmp = get_kol_date(tmp + " " + this_match[2]);
+         }
+         if (last_day != tmp) {
+            matches.push("<hr>");
+         }
+         matches.push(this_match[0]);
+         last_day = tmp;
+      }
+   }
+   var html = matches.join("<br>");
+   html = html.replace(/<hr><br>/g, "<hr>");
+   jQuery('span.small').html(html);
+}
+
 jQuery( document ).ready(function( $ ) {
    $('#orig_content').html(jQuery('span.small').html());
+   $('span.small').html($('#orig_content').html());
+   addDayBreaks();
    $('#toggle_ar_mode').change(function() {
       if ($('#toggle_ar_mode').prop('checked')) {
          replaceSales();
       } else {
          $('span.small').html($('#orig_content').html());
+         addDayBreaks();
       }
    });
    if ($('#toggle_ar_mode').prop('checked')) {
