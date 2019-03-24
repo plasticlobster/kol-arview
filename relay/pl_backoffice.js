@@ -189,7 +189,7 @@ jQuery( document ).ready(function( $ ) {
    $('span.small').html($('#orig_content').html());
    addDayBreaks();
    var ar_view = window.localStorage.getItem('pl_ar_view');
-   if (ar_view) {
+   if (ar_view == "true") {
       $('#toggle_ar_mode').prop('checked', true);
       replaceSales();
       window.localStorage.setItem('pl_ar_view', true);
