@@ -146,6 +146,7 @@ function refreshSales() {
          replaceSales();
       } else {
          jQuery('span.small').html(jQuery('#orig_content').html());
+         addDayBreaks();
       }
    });
 }
