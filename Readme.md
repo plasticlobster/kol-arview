@@ -1,6 +1,24 @@
 This relay script will add an "AR Mode" to your mall sales screen, which will automatically number sales in order by item per-KoL day. This is particularly useful for anti-raffles (AR's) and other mall store buying games.
 Days are broken down into KoL days because rollover is what dictates if someone is able to buy a new ticket, not a new day.
 
+This script also:
+- Separates purchases by day, with a configuration you can set (below) that will toggle between KoL days and real-life days.
+- Adds a refresh button to your sales (Whether in AR mode or not)
+- Lets you click on a ticket number to copy the purchase message to your clipboard (for easy pasting in /games)
+- Lets you click on the winner and will take you to send them a message or gift depending on if the user is in HC/Ronin or not.
+
+To change day separation on regular mode to be by KoL day (not real-life day), type:
+<pre>
+set PL_ARView_Use_KoL_Dates = true
+</pre>
+into your KoLMafia CLI.
+
+To change it back to real-life days, type:
+<pre>
+set PL_ARView_Use_KoL_Dates = false
+</pre>
+into your KoLMafia CLI.
+
 Guide
 =====
 
