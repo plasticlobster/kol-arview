@@ -105,6 +105,7 @@ function replaceSales() {
       matches.push(this_match);
    }
    var ordered_matches = getOrderedMatches(matches);
+   
    var table = jQuery("<table style='font-size: 12px; width: 100%; border-collapse: collapse; border: 1px solid black;' cellpadding='3px'></table");
    var tbody = jQuery("<tbody></tbody>");
    tbody.append(jQuery("<tr style='font-size: 1px;'><td colspan='7' style='background-color: blue; border-bottom: 1px solid black;'>&nbsp;</td></tr>"));
@@ -114,27 +115,14 @@ function replaceSales() {
       tbody.append(jQuery("<tr style='font-size: 1px;'><td colspan='7' style='background-color: blue; border-bottom: 1px solid black;'>&nbsp;</td></tr>"));
       tbody.append(jQuery("<tr><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Ticket #(s)</th><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Date</th><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Time</th><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Player Name</th><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Quantity</th><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Item</th><th style='margin-top: 5px; border-bottom: 1px solid black; border-top: 1px solid black !important'>Price</th></tr>"));
          for (let a = 0; a < value2.length; a++) {
-            var tr = jQuery("<tr></tr>");
-            for (let b = 0; b < value2[a].length; b++) {
-               if ((b == 1) || (b == 4)) continue;
-               let td = jQuery("<td style='text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px'></td>");
-               if (b == 0) {
-                  td.append(jQuery("<b><a href='#' onclick='copyToClipboard(\""+addSlashes(value2[a][1])+"\"); return false;'>" + value2[a][b] + "</a></b>"));
-               } else if (b == 5) {
-                  td.append(jQuery("<a onclick='handleUserClick("+value2[a][4]+", \""+value2[a][5]+"\");' href='#'>" + value2[a][b] + "</a>"));
-               } else if (b == 8) {
-                  td.text(nwc(value2[a][b]));
-               } else {
-                  td.text(value2[a][b]);
-               }
-               tr.append(td);
-            }
+            var tr = jQuery("<tr><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\"><b><a href=\"#\" onclick='copyToClipboard(\"" + addSlashes(value2[a][1]) + "\"); return false;'>" + value2[a][0]+ "</a></b></td><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\">" + value2[a][2] + "</td><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\">" + value2[a][3] + "</td><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\"><a onclick=\"handleUserClick(" + value2[a][4]+ ", '" + addSlashes(value2[a][5]) + "');\" href=\"#\">" + value2[a][5] + "</a></td><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\">" + value2[a][6] + "</td><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\">" + value2[a][7] + "</td><td style=\"text-align: center; border-bottom: 1px solid #EFEFEF; padding: 3px\">" + value2[a][8]+ "</td></tr>");
             tbody.append(tr);
          }
       });
       tbody.append(jQuery("<tr style='font-size: 1px;'><td colspan='7' style='background-color: blue; border-bottom: 1px solid black;'>&nbsp;</td></tr>"));
    });
    table.append(tbody);
+
    jQuery('span.small').html(table);
 }
 
